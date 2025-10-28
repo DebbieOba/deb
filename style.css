@@ -414,7 +414,7 @@ header {
   }
 }
 
-/* Contact Section */
+/* CONTACT SECTION */
 .contact {
   background: #000;
   color: #fff;
@@ -438,6 +438,7 @@ header {
   line-height: 1.6;
 }
 
+/* CONTACT CARD */
 .contact-card {
   background: rgba(20, 20, 20, 0.9);
   border-radius: 12px;
@@ -455,26 +456,32 @@ header {
   box-shadow: 0 0 25px rgba(255, 69, 0, 0.6);
 }
 
+/* CONTACT ITEM */
 .contact-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.8rem;
   margin: 1rem 0;
-  justify-content: center;
   color: #fff;
+  text-align: left;
+  flex-wrap: wrap;
 }
 
 .contact-icon {
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   filter: drop-shadow(0 0 4px #ff4500);
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  flex-shrink: 0;
 }
 
 .contact-item:hover .contact-icon {
   transform: scale(1.1);
+  opacity: 0.9;
 }
 
+/* DIVIDER */
 hr {
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -488,7 +495,7 @@ hr {
   filter: drop-shadow(0 0 4px #ff4500);
 }
 
-/* Fade-in animation */
+/* FADE-IN ANIMATION */
 .fade-in {
   opacity: 0;
   transform: translateY(30px);
@@ -500,26 +507,100 @@ hr {
   transform: translateY(0);
 }
 
-/* Responsive Design */
-@media (max-width: 600px) {
+/* ------------------------------------------ */
+/* RESPONSIVE DESIGN */
+/* ------------------------------------------ */
+
+/* Medium devices (tablets) */
+@media (max-width: 900px) {
+  .contact {
+    padding: 4rem 1rem;
+  }
+
   .contact h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+
+  .contact-sub {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+
+  .contact-card {
+    padding: 1.8rem;
+    width: 90%;
+  }
+}
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .contact {
+    padding: 3.5rem 0.8rem;
+  }
+
+  .contact h2 {
+    font-size: 1.7rem;
+  }
+
+  .contact-sub {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    padding: 0 1rem;
   }
 
   .contact-card {
     padding: 1.5rem;
+    width: 95%;
+  }
+
+  .contact-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 0.5rem;
   }
 
   .contact-icon {
     width: 20px;
     height: 20px;
   }
+}
+
+/* Extra-small devices (under 400px) */
+@media (max-width: 400px) {
+  .contact {
+    padding: 3rem 0.5rem;
+  }
+
+  .contact-card {
+    padding: 1.2rem;
+  }
+
+  .contact h2 {
+    font-size: 1.5rem;
+  }
 
   .contact-sub {
-    font-size: 0.9rem;
-    padding: 0 1rem;
+    font-size: 0.85rem;
+  }
+
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.4rem;
+  }
+
+  .contact-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .contact-link {
+    font-size: 0.85rem;
+    word-break: break-all;
   }
 }
+
 
 /* Footer */
 footer {

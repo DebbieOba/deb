@@ -31,3 +31,4 @@ document.querySelectorAll('.card a').forEach(link => {
     console.log('Opening project:', link.href);
   });
 });
+

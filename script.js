@@ -25,10 +25,9 @@ window.addEventListener('load', revealVisibleElements);
 // Also run on scroll (for elements that appear later)
 window.addEventListener('scroll', revealVisibleElements);
 
-// Optional hover animation or console log for interactivity
+// Optional project link tracking
 document.querySelectorAll('.card a').forEach(link => {
   link.addEventListener('click', () => {
     console.log('Opening project:', link.href);
   });
 });
-

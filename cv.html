@@ -1,92 +1,405 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Deborah — Frontend Developer (CV)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deborah Obajuaye - CV | Frontend Developer</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700;800&display=swap" rel="stylesheet">
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <link rel="stylesheet" href="cv.css">
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+    }
+
+    /* CV Container */
+    .cv-container {
+      width: 100%;
+      max-width: 1200px;
+      background: #fff;
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      margin: 0 auto;
+    }
+
+    /* CV Image - Full Width and Responsive */
+    .cv-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      background-color: #fff;
+    }
+
+    /* Fade-in Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Loading state */
+    .loading {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      color: #333;
+      font-size: 18px;
+      font-weight: 600;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .loading.hidden {
+      display: none;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #333;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+.back-home {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      border: 2px solid #333;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-home:hover {
+      background: #fff;
+      color: #000;
+      transform: translateX(-3px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+    /* Action Buttons */
+    .action-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .action-button {
+      background: rgba(0, 0, 0, 0.9);
+      color: #fff;
+      border: 2px solid #333;
+      padding: 12px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-button:hover {
+      background: #fff;
+      color: #000;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+.home-button {
+      background: rgba(0, 0, 0, 0.9);
+    }
+
+    .home-button:hover {
+      background: #fff;
+      color: #000;
+    }
+    .scroll-top {
+      display: none;
+      width: 50px;
+      height: 50px;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      border-radius: 50%;
+      font-size: 20px;
+    }
+
+    .scroll-top.visible {
+      display: flex;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1400px) {
+      body {
+        padding: 15px;
+      }
+
+      .cv-container {
+        max-width: 1000px;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      body {
+        padding: 10px;
+      }
+
+      .cv-container {
+        max-width: 800px;
+      }
+
+      .action-buttons {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .action-button {
+        padding: 10px 20px;
+        font-size: 13px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .cv-container {
+        border-radius: 4px;
+      }
+.back-home {
+        top: 10px;
+        left: 10px;
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+      .action-buttons {
+        bottom: 15px;
+        right: 15px;
+        gap: 8px;
+      }
+
+      .action-button {
+        padding: 8px 16px;
+        font-size: 12px;
+      }
+
+      .scroll-top {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 5px;
+      }
+
+      .cv-container {
+        border-radius: 0;
+      }
+.back-home span.text,
+.breadcrumb {
+        display: none;
+}
+
+.back-home {
+        padding: 10px;
+        width: 40px;
+        justify-content: center;
+}
+      .action-buttons {
+        bottom: 10px;
+        right: 10px;
+      }
+
+      .action-button span {
+        display: none;
+      }
+
+      .action-button {
+        padding: 10px;
+        min-width: 40px;
+        justify-content: center;
+      }
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .cv-container {
+        box-shadow: none;
+        border-radius: 0;
+        max-width: 100%;
+      }
+
+      .action-buttons,
+      .loading {
+        display: none !important;
+      }
+
+      .cv-image {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
 </head>
 <body>
-  <main class="cv-wrap" role="main" aria-label="Curriculum Vitae">
-    <article class="cv-card">
+  <div class="loading" id="loading">
+    <div class="spinner"></div>
+    <span>Loading CV...</span>
+  </div>
 
-      <!-- LEFT COLUMN -->
-      <aside class="cv-left" aria-label="Left column - name, contact and skills">
-        <header class="name-block">
-          <h1 class="name">DEBORAH</h1>
-          <div class="role-badge">FRONTEND DEVELOPER</div>
-        </header>
+  <a href="index.html" class="back-home" title="Back to Home">
+    <span class="text">Back to Home</span>
+  </a>
 
-        <div class="section contact">
-          <h3 class="section-title">CONTACT</h3>
-          <ul class="contact-list">
-            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden><path d="M12 2C8.1 2 5 5.1 5 9c0 5.3 7 13 7 13s7-7.7 7-13c0-3.9-3.1-7-7-7zM12 11.5c-1.4 0-2.5-1.1-2.5-2.5S10.6 6.5 12 6.5s2.5 1.1 2.5 2.5S13.4 11.5 12 11.5z"/></svg> Lagos, Nigeria</li>
-            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden><path d="M6.6 10.2c1.2 2.7 3.5 5 6.2 6.2l1.7-1.7c.3-.3.8-.4 1.1-.2 1.2.5 2.5.8 3.9.8.4 0 .8.3.9.7.2.4.1.9-.2 1.2l-2 2c-.4.4-1 .6-1.6.6C9.5 19.8 4.2 14.5 3.1 7.7c0-.6.2-1.2.6-1.6l2-2c.3-.3.8-.4 1.2-.2.4.2.7.6.7.9 0 1.4.3 2.7.8 3.9.2.4.1.9-.2 1.2L6.6 10.2z"/></svg> (+234)-811-726-3084</li>
-            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg> obajuayedebbie22@gmail.com</li>
-            <li><svg class="icon" viewBox="0 0 24 24" aria-hidden><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM8.7 16.2H6.2V10h2.5v6.2zM7.5 8.8c-.8 0-1.4-.7-1.4-1.4S6.7 6 7.5 6s1.4.7 1.4 1.4-.6 1.4-1.4 1.4zM18 16.2h-2.5v-3c0-.8-.0-1.8-1.1-1.8-1.1 0-1.2 0-1.2 1.8v3h-2.5V10H12v.9c.4-.6 1.4-1.6 3.4-1.6 2.3 0 3.1 1.4 3.1 3.9v3.9z"/></svg> linkedin.com/self_obajuaye</li>
-          </ul>
-        </div>
+  <div class="cv-container" id="cvContainer">
+    <img src="./images/Obajuayedebbie.png" alt="Deborah Obajuaye - Frontend Developer CV" class="cv-image" id="cvImage">
+  </div>
 
-        <div class="section skills">
-          <h3 class="section-title">SKILLS</h3>
-          <ul class="skills-list">
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Responsive Design</li>
-            <li>Bootstrap</li>
-            <li>Git / GitHub</li>
-          </ul>
-        </div>
-      </aside>
+  <div class="action-buttons">
+    <a href="./images/Obajuayedebbie.png" download="Deborah_Obajuaye_CV.png" class="action-button" title="Download CV">
+      <span>Download</span>
+    </a>
+    <button class="action-button scroll-top" id="scrollTop" title="Scroll to top">
+      ↑
+    </button>
+  </div>
 
-      <!-- RIGHT COLUMN -->
-      <section class="cv-right" aria-label="Right column - profile, education, work">
-        <div class="right-inner">
-          <div class="profile section-block">
-            <h4 class="section-heading">PROFILE</h4>
-            <p>A <strong>Frontend Developer</strong> who builds responsive, user-friendly websites using HTML, CSS and JavaScript. Focused on clean code, modern design and accessible user experiences.</p>
-          </div>
+  <script>
+    // Elements
+    const loading = document.getElementById('loading');
+    const cvContainer = document.getElementById('cvContainer');
+    const cvImage = document.getElementById('cvImage');
+    const scrollTopBtn = document.getElementById('scrollTop');
 
-          <div class="education section-block">
-            <h4 class="section-heading">EDUCATION</h4>
-            <div class="edu-grid">
-              <div>
-                <strong>Vaba College of Technology</strong><br>
-                Nigeria<br>
-                Associate's degree in Computer Science
-              </div>
-              <div class="edu-date">Jan. 2022 – Present</div>
-            </div>
-          </div>
+    cvImage.onload = function() {
+      loading.classList.add('hidden');
+    };
 
-          <div class="work section-block">
-            <h4 class="section-heading">WORK EXPERIENCE</h4>
+    cvImage.onerror = function() {
+      loading.innerHTML = '<div class="spinner"></div><span>Error loading CV. Please refresh the page.</span>';
+    };
 
-            <div class="job">
-              <strong>Web Developer</strong><br>
-              Urban Online Consult — Lagos, Nigeria
-            </div>
+    scrollTopBtn.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
 
-            <div class="job-details">
-              <p><strong>Responsibilities include:</strong></p>
-              <ul>
-                <li>Craft and develop user-friendly responsive websites using modern practices.</li>
-                <li>Ensure cross-browser compatibility and accessibility across devices.</li>
-                <li>Collaborate with cross-functional teams and team members.</li>
-                <li>Assist in adopting new technologies and resolving development issues.</li>
-                <li>Debug and fix issues in existing projects.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
 
-    </article>
-  </main>
+    // Keyboard shortcuts
+    document.addEventListener('keydown', function(e) {
+      // Ctrl/Cmd + S to download
+      if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+        e.preventDefault();
+        const downloadLink = document.querySelector('a[download]');
+        if (downloadLink) downloadLink.click();
+      }
+
+      if (e.key === 'Escape') {
+        window.location.href = 'index.html';
+      }
+
+      if (e.key === 'Home') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      if (e.key === 'End') {
+        e.preventDefault();
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      }
+    });
+
+    // Print functionality
+    function printCV() {
+      window.print();
+    }
+
+    // Zoom functionality (optional)
+    let scale = 1;
+    document.addEventListener('keydown', function(e) {
+      if (e.ctrlKey || e.metaKey) {
+        if (e.key === '+' || e.key === '=') {
+          e.preventDefault();
+          scale = Math.min(scale + 0.1, 2);
+          cvContainer.style.transform = `scale(${scale})`;
+        } else if (e.key === '-') {
+          e.preventDefault();
+          scale = Math.max(scale - 0.1, 0.5);
+          cvContainer.style.transform = `scale(${scale})`;
+        } else if (e.key === '0') {
+          e.preventDefault();
+          scale = 1;
+          cvContainer.style.transform = 'scale(1)';
+        }
+      }
+    });
+  </script>
 </body>
 </html>
